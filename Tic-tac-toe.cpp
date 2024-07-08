@@ -38,9 +38,14 @@ void tabla (char c [3][3]){
 
         for (i=0; i < 3; i ++){
             for (j =0; j < 3; j++){
-            if (j < 2){
-                cout << ( "%c| ", c [i][j]);
-            }   
-        }
+                if (j < 2){
+                    cout << ( "%c| ", c [i][j]);
+                }   
+                else {
+                    cout << ( "%c", c [i][j]);
+            }
+            } 
+
+        }  
         cout << ("\n\n");
-}  
+}
