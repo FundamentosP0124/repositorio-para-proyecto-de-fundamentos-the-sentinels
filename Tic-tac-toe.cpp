@@ -13,3 +13,8 @@ loop (c); // LLama a todas las funciones fundamentales y hace un refresco de pan
     system ("pause");
     return 0;
 }
+
+void loop (char c [3][3]){
+    intro_primera (c);
+    tabla (c);
+}
