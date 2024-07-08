@@ -32,3 +32,11 @@ void intro_primera (char c [3][3]){
         }
     }
 }
+
+void tabla (char c [3][3]){
+    int i, j;
+
+        for (i=0; i < 3; i ++){
+        }
+        cout << ("\n\n");
+}  
