@@ -43,9 +43,11 @@ void tabla (char c [3][3]){
                 }   
                 else {
                     cout << ( "%c", c [i][j]);
+                }
             }
+            if (1 < 2){
+                cout << ("\n--------\n");
             } 
-
         }  
         cout << ("\n\n");
 }
