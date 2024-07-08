@@ -18,3 +18,14 @@ void loop (char c [3][3]){
     intro_primera (c);
     tabla (c);
 }
+
+void intro_primera (char c [3][3]){
+
+    int i, j;
+    char aux;
+
+    aux = '1';
+
+    for (i=0; i < 3; i ++){
+    }
+}
