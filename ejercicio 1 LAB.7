@@ -1,0 +1,37 @@
+#include <iostream>
+
+using namespace std;
+main () {
+    int x, adivina=0, num, intentos=0;
+    
+    srand((unsigned) time (NULL));
+    x=1+rand() %100;
+    
+    while (adivina==0){
+        cout<<"INGRESE UN NUMERO DEL 1 AL 100 CRACK: ";
+        cin>>num;
+        
+        if (num>=1 ; num <=100) {
+           
+            intentos=intentos+1;
+           
+            if (num>x){
+                cout<<"EL NUMERO A ADIVINAR ES MENOR";
+                cout<<endl<<endl;
+                
+            }else if (num<x){
+                cout<<"EL NUMERO A ADIVINAR ES MAYOR";
+                cout<<endl<<endl;
+            }else{
+                cout<<"NUMERO ADIVINADO EN: "<<"intentos"<<endl;
+                adivina=1;
+            }
+        }else{
+            cout<<"NUMERO INGRESADO ESTA FUERA DE RANGO!!";
+            cout<<endl<<endl;
+        }
+        
+    }
+
+    return 0;
+}

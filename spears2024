@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+int main ()
+{
+    int hh,mm,ss;
+    cout<<endl<<endl;
+    cout<<"LA HORA UN SEGUNDO DESPUÉS" <<enl <<< endl;
+
+    cout << "Digite horas, minutos y segundos: ";
+    cin >> hh >> ss;
+
+    if (hh<0 || hh>23 || mm<0 || mm>59 || ss<0 || ss>59)
+    cout<<"metiste una hora no valida" << endl;
+    else
+    if(ss<=58)
+    ss=ss+1;
+    else
+    mm=0;
+    
+    
+}
