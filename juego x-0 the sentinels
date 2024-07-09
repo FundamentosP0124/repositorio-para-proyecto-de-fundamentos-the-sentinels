@@ -1,0 +1,196 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void loop(char c[3][3]);
+void intro_primera(char c[3][3]);
+void tabla(char c[3][3]);
+void Intro_Yo(char c[3][3]);
+void Intro_IA(char c[3][3]);
+int ganador(char c[3][3]);
+void mostrar_instrucciones();
+void menu();
+
+int main() {
+    srand(time(NULL));  // Inicializar la semilla solo una vez
+    menu();
+    return 0;
+}
+
+void menu() {
+    int opcion;
+    char c[3][3];
+
+    do {
+        system("cls");
+        printf("Menu del Juego Tic Tac Toe\n");
+        printf("1. Jugar\n");
+        printf("2. Instrucciones\n");
+        printf("3. Salir\n");
+        printf("Selecciona una opcion: ");
+        scanf("%d", &opcion);
+
+        switch(opcion) {
+            case 1:
+                loop(c);
+                break;
+            case 2:
+                mostrar_instrucciones();
+                break;
+            case 3:
+                printf("Gracias por jugar!\n");
+                break;
+            default:
+                printf("Opcion invalida. Intentalo de nuevo.\n");
+                system("pause");
+        }
+    } while(opcion != 3);
+}
+
+void mostrar_instrucciones() {
+    system("cls");
+    printf("Instrucciones del Juego Tic Tac Toe\n");
+    printf("1. El juego es para dos jugadores: tu y la IA.\n");
+    printf("2. Los jugadores se turnan para colocar sus fichas (X para el jugador, O para la IA).\n");
+    printf("3. El objetivo es alinear tres fichas en una fila, columna o diagonal.\n");
+    printf("4. El primer jugador en alinear tres fichas gana.\n");
+    printf("5. Si todas las casillas se llenan sin un ganador, el juego termina en empate.\n");
+    printf("\nPresiona cualquier tecla para volver al menu principal...");
+    getchar();
+    getchar();
+}
+
+void loop(char c[3][3]) {
+    int i = 0, j;
+
+    intro_primera(c);
+
+    do {
+        system("cls");
+        tabla(c);
+
+        if (i % 2 == 0) {
+            Intro_Yo(c);
+        } else {
+            Intro_IA(c);
+        }
+        j = ganador(c);
+        i++;
+    } while (i < 9 && j == 2);
+
+    system("cls");
+    tabla(c);
+
+    if (j == 0) {
+        printf("¡Haz ganado!! SIUUUU!!\n\n");
+    } else if (j == 1) {
+        printf("¡Haz perdido!! NOUUUU!!\n\n");
+    } else {
+        printf("¡Haz empatado!! Inténtalo de nuevo\n\n");
+    }
+
+    printf("Presiona cualquier tecla para volver al menu principal...");
+    getchar();
+    getchar();
+}
+
+void intro_primera(char c[3][3]) {
+    int i, j;
+    char aux = '1';
+
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            c[i][j] = aux++;
+        }
+    }
+}
+
+void Intro_Yo(char c[3][3]) {
+    int i = 0, j = 0, k;
+    char aux;
+    do {
+        do {
+            printf("Coloca una ficha: ");
+            fflush(stdin);
+            scanf(" %c", &aux);
+        } while (aux < '1' || aux > '9');
+
+        k = 0;
+
+        switch (aux) {
+            case '1': i = 0; j = 0; break;
+            case '2': i = 0; j = 1; break;
+            case '3': i = 0; j = 2; break;
+            case '4': i = 1; j = 0; break;
+            case '5': i = 1; j = 1; break;
+            case '6': i = 1; j = 2; break;
+            case '7': i = 2; j = 0; break;
+            case '8': i = 2; j = 1; break;
+            case '9': i = 2; j = 2; break;
+        }
+
+        if (c[i][j] == 'X' || c[i][j] == 'O') {
+            k = 1;
+            printf("¡La casilla está ocupada! Inténtalo con otro número \n\n");
+        }
+    } while (k == 1);
+
+    c[i][j] = 'X';
+}
+
+void Intro_IA(char c[3][3]) {
+    int i, j, k;
+
+    do {
+        i = rand() % 3;
+        j = rand() % 3;
+        k = 0;
+
+        if (c[i][j] == 'X' || c[i][j] == 'O') {
+            k = 1;
+        }
+    } while (k == 1);
+
+    c[i][j] = 'O';
+}
+
+void tabla(char c[3][3]) {
+    int i, j;
+
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (j < 2) {
+                printf("%c|", c[i][j]);
+            } else {
+                printf("%c", c[i][j]);
+            }
+        }
+        if (i < 2) {
+            printf("\n--------\n");
+        }
+    }
+    printf("\n\n");
+}
+
+int ganador(char c[3][3]) {
+    // Verificar filas
+    for (int i = 0; i < 3; i++) {
+        if (c[i][0] == c[i][1] && c[i][1] == c[i][2]) {
+            return (c[i][0] == 'X') ? 0 : 1;
+        }
+    }
+    // Verificar columnas
+    for (int j = 0; j < 3; j++) {
+        if (c[0][j] == c[1][j] && c[1][j] == c[2][j]) {
+            return (c[0][j] == 'X') ? 0 : 1;
+        }
+    }
+    // Verificar diagonales
+    if (c[0][0] == c[1][1] && c[1][1] == c[2][2]) {
+        return (c[0][0] == 'X') ? 0 : 1;
+    }
+    if (c[0][2] == c[1][1] && c[1][1] == c[2][0]) {
+        return (c[0][2] == 'X') ? 0 : 1;
+    }
+    return 2; // Si no hay ganador, devolver 2
+}
